@@ -97,8 +97,6 @@ def run_backtest(
         if spread_std > 0 and not np.isnan(spread_std):
             # Normalize: allocate capital such that 1 std move = ~2% of capital
             position_size = 0.02 * capital / spread_std
-            scaled_pnl = daily_pnl * position_size / capital * capital
-            # Simplified: just use proportion
             scaled_pnl = prev_signal_val * spread_change * position_size
         else:
             scaled_pnl = 0.0
